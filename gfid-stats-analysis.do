@@ -28,7 +28,7 @@ use data_files\gfid-data-`year'
 
 sum y x2 x3 x4 x5 x6 x7
 
-twoway scatter y x6 || lfit y x6, title("y vs male")
+twoway scatter y x5 || lfit y x5, title("y vs financial institution account")
 graph export graphs\graph-1_`year'.png, replace
 
 
