@@ -10,6 +10,6 @@
 # step 2
 # a) run gfid-stats-data.do file, which will create three files (one for each year for which data is available) using just the variables from step 1 e)
 
-# step 3
+# step 3 - actual statistical analysis for this project is performed here. Repeat steps 1 and 2 as needed to create the necessary .dta files.
 # a) run the analysis and regression in remaining gfid-stats-analysis.do file
 
