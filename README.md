@@ -1,9 +1,9 @@
 # mmef_econ-proj
 
 # step 1
-# a) run gfid-variables-to-keep.do
+# a) run gfid-variables.do
 # b) gfid-data-variables.xlsx - update 'Variable selection' sheet if necessary
-# c) select variables to keep using boolean and filter on those to keep
+# c) select relevant variables on which regression will be run using boolean and filter
 # d) copy to 'Keep list' sheet in a row
 # e) copy list to gfid-stats-data.do file as parameters to keep command. Step 1 e) given as comment
 
