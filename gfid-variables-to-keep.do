@@ -17,7 +17,7 @@ Description		Used just to create "gfid-data-variables.xlsx" file for variable se
 */
 
 * change working directory (pwd) as needed
-cd "C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\econ_project"
+cd "C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-project"
 
 * used initially to determine relevant variables for analysis
 clear 

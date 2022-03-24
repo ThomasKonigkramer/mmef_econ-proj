@@ -1,5 +1,5 @@
 /* 
-Title: 			gfid - global financial inclusion data-`year
+Title: 			gfid - global financial inclusion 'data-year'
 
 Authors			Xiao Jiang
 				Sukanya Mukherjee
@@ -12,14 +12,11 @@ Description		This .do creates 3 dta files for the three years of data that were 
 				Variables are also dropped so that we only include those necessary for our analysis.
 
 Sections		1) import, save and initial modifications to data
-				2) initial analysis
-				3) dummy variable creation for world region and income level
-				4) 
-			
+
 */
 
 * change working directory (pwd) as needed
-cd "C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\econ_project"
+cd "C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-project"
 
 * 1) import, save and initial modifications to data *******************************************************************
 
@@ -65,25 +62,3 @@ foreach year in `year_list'{
 	save data_files\gfid-data-`year', replace
 	
 }
-
-* only looking at year (2011, 2014 or 2017) as defined in local variable 'year' below
-local year = 2017
-display `year'
-use data_files\gfid-data-`year'
-
-* 2) initial analysis *************************************************************************************************
-
-sum y x2 x3 x4 x5 x6 x7
-
-twoway scatter y x5 || lfit y x5, title("y vs Financial institution account")
-graph export graphs\graph-1_`year'.png, replace
-
-
-* 3) dummy variable creation for world region and income level ********************************************************
-
-
-
-	
-
-
-
