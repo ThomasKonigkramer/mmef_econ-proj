@@ -1,7 +1,7 @@
 # mmef_econ-proj
 
 # step 1
-# a) gfid-variables-to-keep.do
+# a) run gfid-variables-to-keep.do
 # b) gfid-data-variables.xlsx - update 'Variable selection' sheet if necessary
 # c) select variables to keep using boolean and filter on those to keep
 # d) copy to 'Keep list' sheet in a row
