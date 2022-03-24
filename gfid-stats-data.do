@@ -44,7 +44,7 @@ foreach year in `year_list'{
 	* look only at year (2011, 2014 or 2017) as defined in loop
 	drop if A != `year'
 
-	* remove data points where x3 (world region) is empty - this coincides with grouped countries which we don't want as data points
+	* remove data points where D (world region) is empty - this coincides with grouped countries which we don't want as data points
 	drop if D == ""
 	
 	* rename tedious variable names - labels are descriptive enough
