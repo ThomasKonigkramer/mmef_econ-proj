@@ -31,7 +31,7 @@ foreach year in `year_list'{
 	* suggestion for y
 	order Accountage15, first
 	
-	* keep only listed variables - see 'gfid-variables-to-keep.do'
+	* step 1 e) keep only listed variables - see 'gfid-variables-to-keep.do'
 	keep A	C	D	E	Accountage15	Financialinstitutionaccount	MainmodeofwithdrawalATM	Mainmodeofwithdrawalbankte
 	
 	* adding in missing labels
