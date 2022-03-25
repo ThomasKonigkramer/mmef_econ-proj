@@ -13,3 +13,4 @@
 # step 3 - actual statistical analysis for this project is performed here. Repeat steps 1 and 2 as needed to create the necessary .dta files.
 # a) run the analysis and regression in remaining gfid-stats-analysis.do file
 
+# hi guys
