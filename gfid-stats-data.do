@@ -32,7 +32,8 @@ foreach year in `year_list'{
 	order Accountage15, first
 	
 	* step 1 e) keep only listed variables - see 'gfid-variables.do'
-	keep A	C	D	E	Accountage15	Noaccountbecausefinancialins	AF	Noaccountbecausefinancialser	AH	Noaccountbecauseoflackofne	AJ	Noaccountbecauseoflackoftr	AL	Noaccountbecauseofreligious	AN	Noaccountbecauseofinsufficie	AP	Noaccountbecausesomeoneinth	AR	Noaccountbecauseofnoneedfo	AT	MainmodeofwithdrawalATM	Mainmodeofwithdrawalbankte	Mainmodeofwithdrawalbankte
+	keep A	C	D	E	Accountage15	Accountmaleage15	Accountfemaleage15	Accountyoungadultsages15	Accountolderadultsages25	Accountprimaryeducationorle	Accountsecondaryeducationor	Accountincomepoorest40	Accountincomerichest60	Receivedwagesinthepastyear	Paidschoolfeesinthepastyea	Receivedprivatesectorwagesin	Receivedpublicsectorwagesin	Hasanationalidentitycard
+
 
 	
 	* adding in missing labels

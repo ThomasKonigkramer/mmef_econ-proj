@@ -21,12 +21,18 @@ cd "C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-projec
 
 * used initially to determine relevant variables for analysis
 clear 
+
 import excel "data_files\Global-Findex-Database.xlsx", sheet("Data") firstrow clear
+
 label variable A "Year"
 label variable B "Country code"
 label variable C "Country name"
 label variable D "World region"
 label variable E "Income level"
+
 save data_files\gfid-data-original, replace
+
 export excel "data_files\gfid-data-variables.xlsx", sheet("Variables", replace) firstrow(variables)  
 export excel "data_files\gfid-data-variables.xlsx", sheet("Labels", replace) firstrow(varlabels) 
+
+// use data_files\gfid-data-original
