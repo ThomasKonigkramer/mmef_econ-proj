@@ -18,3 +18,4 @@
 >> contested observations in west and central africa
 */
 
+* histo of variables gdps(two different), latitude, expropriation and logs
