@@ -1,0 +1,24 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj\source_data\maketable2.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}28 Mar 2022, 16:51:30
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. use maketable2, clear
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. capture log close
+{smcl}
+{com}{sf}{ul off}
