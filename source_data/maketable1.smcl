@@ -25,4 +25,839 @@
 {com}. 
 {txt}end of do-file
 
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{res}C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{txt}
+{com}. 
+. * 1) use, save data ***************************************************************************************************
+. 
+. use data_files\maketable2
+{txt}
+{com}. 
+. merge 1:1 shortnam using maketable1
+{res}{err}{p 0 4 2}
+file {bf:{err}maketable1.dta}
+not found
+{p_end}
+{txt}{search r(601), local:r(601);}
+
+end of do-file
+
+{search r(601), local:r(601);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. save data_files\testing-here, replace
+{txt}{p 0 4 2}
+(file {bf}
+data_files\testing-here.dta{rm}
+not found)
+{p_end}
+{p 0 4 2}
+file {bf}
+data_files\testing-here.dta{rm}
+saved
+{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{res}C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{txt}
+{com}. 
+. * 1) use, save data ***************************************************************************************************
+. 
+. use data_files\maketable2
+{txt}
+{com}. 
+. merge 1:1 shortnam using data_files\maketable1
+{res}
+{txt}{col 5}Result{col 33}Number of obs
+{col 5}{hline 41}
+{col 5}Not matched{col 30}{res}               0
+{txt}{col 5}Matched{col 30}{res}             163{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. 
+. * drop variables not necessary
+. // drop slave
+. 
+. save data_files\testing-here, replace
+{txt}{p 0 4 2}
+file {bf}
+data_files\testing-here.dta{rm}
+saved
+{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. drop euro1900 excolony
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. drop euro1900 excolony con1
+{err}variable {bf}euro1900{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{res}C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{txt}
+{com}. 
+. * 1) use, save data ***************************************************************************************************
+. 
+. use data_files\maketable2
+{txt}
+{com}. 
+. merge 1:1 shortnam using data_files\maketable1
+{res}
+{txt}{col 5}Result{col 33}Number of obs
+{col 5}{hline 41}
+{col 5}Not matched{col 30}{res}               0
+{txt}{col 5}Matched{col 30}{res}             163{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. * all _merge variables have a value of 3, which means there was a successful merge across the row
+. 
+. * drop variables not necessary
+. drop euro1900 excolony con1 cons90 democ00a cons00a extmort4
+{err}variable {bf}con1{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{res}C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{txt}
+{com}. 
+. * 1) use, save data ***************************************************************************************************
+. 
+. use data_files\maketable2
+{txt}
+{com}. 
+. merge 1:1 shortnam using data_files\maketable1
+{res}
+{txt}{col 5}Result{col 33}Number of obs
+{col 5}{hline 41}
+{col 5}Not matched{col 30}{res}               0
+{txt}{col 5}Matched{col 30}{res}             163{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. * all _merge variables have a value of 3, which means there was a successful merge across the row
+. 
+. * drop variables not necessary
+. drop euro1900 excolony cons1 cons90 democ00a cons00a extmort4
+{txt}
+{com}. 
+. 
+. 
+. save data_files\testing-here, replace
+{txt}{p 0 4 2}
+file {bf}
+data_files\testing-here.dta{rm}
+saved
+{p_end}
+
+{com}. 
+{txt}end of do-file
+
+{com}. help expo
+
+. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. gen pgp95 = exp(logpgp95)
+{txt}(15 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. gen hjypl = expo(loghjypl)
+{err}unknown function expo()
+{txt}{search r(133), local:r(133);}
+
+end of do-file
+
+{search r(133), local:r(133);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. gen hjypl = exp(loghjypl)
+{txt}(40 missing values generated)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}shortnam {c |}{res}          0
+{txt}{space 6}africa {c |}{res}        163    .3067485    .4625652          0          1
+{txt}{space 4}lat_abst {c |}{res}        162    .2955502    .1903789          0   .7222222
+{txt}{space 6}avexpr {c |}{res}        121    7.066491    1.804287   1.636364         10
+{txt}{space 4}logpgp95 {c |}{res}        148    8.302509    1.105342   6.109248   10.28875
+{txt}{hline 13}{c +}{hline 57}
+{space 7}other {c |}{res}        163    .0245399    .1551948          0          1
+{txt}{space 8}asia {c |}{res}        163    .2576687    .4386984          0          1
+{txt}{space 4}loghjypl {c |}{res}        123   -1.731106    1.083726  -3.540459          0
+{txt}{space 6}baseco {c |}{res}         64           1           0          1          1
+{txt}{space 6}logem4 {c |}{res}         87    4.595984    1.303333   .9360933   7.986165
+{txt}{hline 13}{c +}{hline 57}
+{space 6}_merge {c |}{res}        163           3           0          3          3
+{txt}{space 7}pgp95 {c |}{res}        148    7064.866    7331.979        450   29399.99
+{txt}{space 7}hjypl {c |}{res}        123    .2928455    .2696908       .029          1
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. order shortnam pgp95 logpgp95 loghjypl hjypl
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. clear
+{txt}
+{com}. cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{res}C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{txt}
+{com}. 
+. * 1) use, save data ***************************************************************************************************
+. 
+. use data_files\maketable2
+{txt}
+{com}. 
+. merge 1:1 shortnam using data_files\maketable1
+{res}
+{txt}{col 5}Result{col 33}Number of obs
+{col 5}{hline 41}
+{col 5}Not matched{col 30}{res}               0
+{txt}{col 5}Matched{col 30}{res}             163{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. * all _merge variables have a value of 3, which means there was a successful merge across the row
+. 
+. * drop variables not necessary
+. // drop euro1900 excolony cons1 cons90 democ00a cons00a
+. 
+. save data_files\testing-here, replace
+{txt}{p 0 4 2}
+file {bf}
+data_files\testing-here.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. order shortnam pgp95 logpgp95 loghjypl hjypl
+{err}variable {bf}pgp95{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. * change working directory (pwd) as needed
+. clear
+{txt}
+{com}. cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{res}C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+{txt}
+{com}. 
+. * 1) use, save data ***************************************************************************************************
+. 
+. use data_files\maketable2
+{txt}
+{com}. 
+. merge 1:1 shortnam using data_files\maketable1
+{res}
+{txt}{col 5}Result{col 33}Number of obs
+{col 5}{hline 41}
+{col 5}Not matched{col 30}{res}               0
+{txt}{col 5}Matched{col 30}{res}             163{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. * all _merge variables have a value of 3, which means there was a successful merge across the row
+. 
+. * drop variables not necessary
+. // drop euro1900 excolony cons1 cons90 democ00a cons00a
+. 
+. save data_files\testing-here, replace
+{txt}{p 0 4 2}
+file {bf}
+data_files\testing-here.dta{rm}
+saved
+{p_end}
+
+{com}. 
+. * 2) theory (summary and dummies) *************************************************************************************
+. * generate variables needed variables for investigation
+. 
+. sum
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}shortnam {c |}{res}          0
+{txt}{space 6}africa {c |}{res}        163    .3067485    .4625652          0          1
+{txt}{space 4}lat_abst {c |}{res}        162    .2955502    .1903789          0   .7222222
+{txt}{space 6}avexpr {c |}{res}        121    7.066491    1.804287   1.636364         10
+{txt}{space 4}logpgp95 {c |}{res}        148    8.302509    1.105342   6.109248   10.28875
+{txt}{hline 13}{c +}{hline 57}
+{space 7}other {c |}{res}        163    .0245399    .1551948          0          1
+{txt}{space 8}asia {c |}{res}        163    .2576687    .4386984          0          1
+{txt}{space 4}loghjypl {c |}{res}        123   -1.731106    1.083726  -3.540459          0
+{txt}{space 6}baseco {c |}{res}         64           1           0          1          1
+{txt}{space 4}euro1900 {c |}{res}        154    30.46623    42.38986          0        100
+{txt}{hline 13}{c +}{hline 57}
+{space 4}excolony {c |}{res}        162    .6666667    .4728662          0          1
+{txt}{space 7}cons1 {c |}{res}         88    3.590909    2.414689          1          7
+{txt}{space 6}cons90 {c |}{res}         88    3.636364    2.339967          1          7
+{txt}{space 4}democ00a {c |}{res}         87    1.149425    2.576859          0         10
+{txt}{space 5}cons00a {c |}{res}         91    1.857143    1.823132          1          7
+{txt}{hline 13}{c +}{hline 57}
+{space 4}extmort4 {c |}{res}         87    220.9264    411.4982       2.55       2940
+{txt}{space 6}logem4 {c |}{res}         87    4.595984    1.303333   .9360933   7.986165
+{txt}{space 6}_merge {c |}{res}        163           3           0          3          3
+{txt}
+{com}. 
+. gen pgp95 = exp(logpgp95)
+{txt}(15 missing values generated)
+
+{com}. * 15 missing values generated: no information in logpgp95 for those observations, so this is expected (163-148=15)
+. gen hjypl = exp(loghjypl)
+{txt}(40 missing values generated)
+
+{com}. * 40 missing values generated: no information (163-123=40)
+. 
+. order shortnam pgp95 logpgp95 loghjypl hjypl
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. twoway histogram pgp95 || kdensity pgp95, title("`: var label pgp95'")
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. twoway histogram logpgp95 || kdensity logpgp95, title("`: var label logpgp95'")
+{res}{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}shortnam {c |}{res}          0
+{txt}{space 7}pgp95 {c |}{res}        148    7064.866    7331.979        450   29399.99
+{txt}{space 4}logpgp95 {c |}{res}        148    8.302509    1.105342   6.109248   10.28875
+{txt}{space 4}loghjypl {c |}{res}        123   -1.731106    1.083726  -3.540459          0
+{txt}{space 7}hjypl {c |}{res}        123    .2928455    .2696908       .029          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}africa {c |}{res}        163    .3067485    .4625652          0          1
+{txt}{space 4}lat_abst {c |}{res}        162    .2955502    .1903789          0   .7222222
+{txt}{space 6}avexpr {c |}{res}        121    7.066491    1.804287   1.636364         10
+{txt}{space 7}other {c |}{res}        163    .0245399    .1551948          0          1
+{txt}{space 8}asia {c |}{res}        163    .2576687    .4386984          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 6}baseco {c |}{res}         64           1           0          1          1
+{txt}{space 4}euro1900 {c |}{res}        154    30.46623    42.38986          0        100
+{txt}{space 4}excolony {c |}{res}        162    .6666667    .4728662          0          1
+{txt}{space 7}cons1 {c |}{res}         88    3.590909    2.414689          1          7
+{txt}{space 6}cons90 {c |}{res}         88    3.636364    2.339967          1          7
+{txt}{hline 13}{c +}{hline 57}
+{space 4}democ00a {c |}{res}         87    1.149425    2.576859          0         10
+{txt}{space 5}cons00a {c |}{res}         91    1.857143    1.823132          1          7
+{txt}{space 4}extmort4 {c |}{res}         87    220.9264    411.4982       2.55       2940
+{txt}{space 6}logem4 {c |}{res}         87    4.595984    1.303333   .9360933   7.986165
+{txt}{space 6}_merge {c |}{res}        163           3           0          3          3
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum logpgp95
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}logpgp95 {c |}{res}        148    8.302509    1.105342   6.109248   10.28875
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum detail
+{err}variable {bf}detail{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum logpgp95 detail
+{err}variable {bf}detail{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum logpgp95 detail
+{err}variable {bf}detail{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum logpgp95 logem4 detail
+{err}variable {bf}detail{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum logpgp95 logem4, detail
+
+             {txt}log PPP GDP pc in 1995, World Bank
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 6.253829       6.109248
+{txt} 5%    {res} 6.565265       6.253829
+{txt}10%    {res} 6.835185       6.253829       {txt}Obs         {res}        148
+{txt}25%    {res} 7.374624       6.461468       {txt}Sum of wgt. {res}        148
+
+{txt}50%    {res} 8.265764                      {txt}Mean          {res} 8.302509
+                        {txt}Largest       Std. dev.     {res} 1.105342
+{txt}75%    {res} 9.224119       10.12021
+{txt}90%    {res} 9.897972       10.14643       {txt}Variance      {res} 1.221781
+{txt}95%    {res} 10.00559       10.21574       {txt}Skewness      {res} .0588847
+{txt}99%    {res} 10.21574       10.28875       {txt}Kurtosis      {res} 1.934531
+
+                    {txt}log settler mortality
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} .9360933       .9360933
+{txt} 5%    {res} 2.433613        1.05779
+{txt}10%    {res} 2.778819       2.145931       {txt}Obs         {res}         87
+{txt}25%    {res} 4.216562       2.145931       {txt}Sum of wgt. {res}         87
+
+{txt}50%    {res} 4.442651                      {txt}Mean          {res} 4.595984
+                        {txt}Largest       Std. dev.     {res} 1.303333
+{txt}75%    {res} 5.634789       6.504288
+{txt}90%    {res} 6.180017       7.293018       {txt}Variance      {res} 1.698678
+{txt}95%    {res} 6.504288       7.602901       {txt}Skewness      {res} -.239708
+{txt}99%    {res} 7.986165       7.986165       {txt}Kurtosis      {res} 3.561895
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum logpgp95, detail
+
+             {txt}log PPP GDP pc in 1995, World Bank
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 6.253829       6.109248
+{txt} 5%    {res} 6.565265       6.253829
+{txt}10%    {res} 6.835185       6.253829       {txt}Obs         {res}        148
+{txt}25%    {res} 7.374624       6.461468       {txt}Sum of wgt. {res}        148
+
+{txt}50%    {res} 8.265764                      {txt}Mean          {res} 8.302509
+                        {txt}Largest       Std. dev.     {res} 1.105342
+{txt}75%    {res} 9.224119       10.12021
+{txt}90%    {res} 9.897972       10.14643       {txt}Variance      {res} 1.221781
+{txt}95%    {res} 10.00559       10.21574       {txt}Skewness      {res} .0588847
+{txt}99%    {res} 10.21574       10.28875       {txt}Kurtosis      {res} 1.934531
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum, detail
+
+                    {txt}3 letter country name
+{hline 61}
+no observations
+
+                            pgp95
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 520.0001            450
+{txt} 5%    {res} 710.0001       520.0001
+{txt}10%    {res}      930       520.0001       {txt}Obs         {res}        148
+{txt}25%    {res}     1595            640       {txt}Sum of wgt. {res}        148
+
+{txt}50%    {res} 3889.999                      {txt}Mean          {res} 7064.866
+                        {txt}Largest       Std. dev.     {res} 7331.979
+{txt}75%    {res}    10140          24840
+{txt}90%    {res} 19889.99          25500       {txt}Variance      {res} 5.38e+07
+{txt}95%    {res} 22149.99          27330       {txt}Skewness      {res} 1.257881
+{txt}99%    {res}    27330       29399.99       {txt}Kurtosis      {res} 3.356508
+
+             {txt}log PPP GDP pc in 1995, World Bank
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 6.253829       6.109248
+{txt} 5%    {res} 6.565265       6.253829
+{txt}10%    {res} 6.835185       6.253829       {txt}Obs         {res}        148
+{txt}25%    {res} 7.374624       6.461468       {txt}Sum of wgt. {res}        148
+
+{txt}50%    {res} 8.265764                      {txt}Mean          {res} 8.302509
+                        {txt}Largest       Std. dev.     {res} 1.105342
+{txt}75%    {res} 9.224119       10.12021
+{txt}90%    {res} 9.897972       10.14643       {txt}Variance      {res} 1.221781
+{txt}95%    {res} 10.00559       10.21574       {txt}Skewness      {res} .0588847
+{txt}99%    {res} 10.21574       10.28875       {txt}Kurtosis      {res} 1.934531
+
+                {txt}log GDP per work, Hall&Jones
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}-3.540459      -3.540459
+{txt} 5%    {res}-3.442019      -3.540459
+{txt}10%    {res}-3.352407      -3.540459       {txt}Obs         {res}        123
+{txt}25%    {res}-2.748872      -3.506558       {txt}Sum of wgt. {res}        123
+
+{txt}50%    {res}-1.560648                      {txt}Mean          {res}-1.731106
+                        {txt}Largest       Std. dev.     {res} 1.083726
+{txt}75%    {res}-.8255364      -.1346749
+{txt}90%    {res}-.3092462      -.0608122       {txt}Variance      {res} 1.174461
+{txt}95%    {res}-.1815219      -.0140989       {txt}Skewness      {res}-.1483308
+{txt}99%    {res}-.0140989              0       {txt}Kurtosis      {res} 1.780649
+
+                            {txt}hjypl
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}     .029           .029
+{txt} 5%    {res}     .032           .029
+{txt}10%    {res}     .035           .029       {txt}Obs         {res}        123
+{txt}25%    {res}     .064            .03       {txt}Sum of wgt. {res}        123
+
+{txt}50%    {res}      .21                      {txt}Mean          {res} .2928455
+                        {txt}Largest       Std. dev.     {res} .2696908
+{txt}75%    {res}     .438           .874
+{txt}90%    {res}     .734           .941       {txt}Variance      {res} .0727331
+{txt}95%    {res}     .834           .986       {txt}Skewness      {res} .9959779
+{txt}99%    {res}     .986              1       {txt}Kurtosis      {res} 2.813345
+
+                     {txt}dummy=1 for Africa
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}        163
+{txt}25%    {res}        0              0       {txt}Sum of wgt. {res}        163
+
+{txt}50%    {res}        0                      {txt}Mean          {res} .3067485
+                        {txt}Largest       Std. dev.     {res} .4625652
+{txt}75%    {res}        1              1
+{txt}90%    {res}        1              1       {txt}Variance      {res} .2139665
+{txt}95%    {res}        1              1       {txt}Skewness      {res} .8381395
+{txt}99%    {res}        1              1       {txt}Kurtosis      {res} 1.702478
+
+                 {txt}Abs(latitude of capital)/90
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} .0111111              0
+{txt} 5%    {res} .0222222       .0111111
+{txt}10%    {res} .0666667       .0111111       {txt}Obs         {res}        162
+{txt}25%    {res} .1444445       .0111111       {txt}Sum of wgt. {res}        162
+
+{txt}50%    {res} .2666667                      {txt}Mean          {res} .2955502
+                        {txt}Largest       Std. dev.     {res} .1903789
+{txt}75%    {res} .4477778       .6888889
+{txt}90%    {res} .5611111       .6888889       {txt}Variance      {res} .0362441
+{txt}95%    {res} .6222222       .7111111       {txt}Skewness      {res} .3563822
+{txt}99%    {res} .7111111       .7222222       {txt}Kurtosis      {res}  2.04913
+
+        {txt}average protection against expropriation risk
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        3       1.636364
+{txt} 5%    {res}        4              3
+{txt}10%    {res} 4.681818            3.5       {txt}Obs         {res}        121
+{txt}25%    {res} 5.886364       3.636364       {txt}Sum of wgt. {res}        121
+
+{txt}50%    {res} 7.045455                      {txt}Mean          {res} 7.066491
+                        {txt}Largest       Std. dev.     {res} 1.804287
+{txt}75%    {res} 8.272727             10
+{txt}90%    {res} 9.727273             10       {txt}Variance      {res} 3.255451
+{txt}95%    {res} 9.727273             10       {txt}Skewness      {res}-.2033326
+{txt}99%    {res}       10             10       {txt}Kurtosis      {res} 2.656837
+
+       {txt}dummy=1 if not in Asia, Africa, or the Americas
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}        163
+{txt}25%    {res}        0              0       {txt}Sum of wgt. {res}        163
+
+{txt}50%    {res}        0                      {txt}Mean          {res} .0245399
+                        {txt}Largest       Std. dev.     {res} .1551948
+{txt}75%    {res}        0              1
+{txt}90%    {res}        0              1       {txt}Variance      {res} .0240854
+{txt}95%    {res}        0              1       {txt}Skewness      {res}  6.14615
+{txt}99%    {res}        1              1       {txt}Kurtosis      {res} 38.77516
+
+                     {txt}=1 for all of asia
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}        163
+{txt}25%    {res}        0              0       {txt}Sum of wgt. {res}        163
+
+{txt}50%    {res}        0                      {txt}Mean          {res} .2576687
+                        {txt}Largest       Std. dev.     {res} .4386984
+{txt}75%    {res}        1              1
+{txt}90%    {res}        1              1       {txt}Variance      {res} .1924563
+{txt}95%    {res}        1              1       {txt}Skewness      {res} 1.108179
+{txt}99%    {res}        1              1       {txt}Kurtosis      {res}  2.22806
+
+             {txt}base sample Colonial Origins paper
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}         64
+{txt}25%    {res}        1              1       {txt}Sum of wgt. {res}         64
+
+{txt}50%    {res}        1                      {txt}Mean          {res}        1
+                        {txt}Largest       Std. dev.     {res}        0
+{txt}75%    {res}        1              1
+{txt}90%    {res}        1              1       {txt}Variance      {res}        0
+{txt}95%    {res}        1              1       {txt}Skewness      {res}        .
+{txt}99%    {res}        1              1       {txt}Kurtosis      {res}        .
+
+                 {txt}European settlers 1900, AJR
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}        154
+{txt}25%    {res}        0              0       {txt}Sum of wgt. {res}        154
+
+{txt}50%    {res}     1.95                      {txt}Mean          {res} 30.46623
+                        {txt}Largest       Std. dev.     {res} 42.38986
+{txt}75%    {res}       93            100
+{txt}90%    {res}      100            100       {txt}Variance      {res}   1796.9
+{txt}95%    {res}      100            100       {txt}Skewness      {res} .9296958
+{txt}99%    {res}      100            100       {txt}Kurtosis      {res} 2.005471
+
+               {txt}=1 if was colony FLOPS definiti
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}        162
+{txt}25%    {res}        0              0       {txt}Sum of wgt. {res}        162
+
+{txt}50%    {res}        1                      {txt}Mean          {res} .6666667
+                        {txt}Largest       Std. dev.     {res} .4728662
+{txt}75%    {res}        1              1
+{txt}90%    {res}        1              1       {txt}Variance      {res} .2236025
+{txt}95%    {res}        1              1       {txt}Skewness      {res}-.7071068
+{txt}99%    {res}        1              1       {txt}Kurtosis      {res}      1.5
+
+               {txt}cons on exec in 1st year indep
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}         88
+{txt}25%    {res}        1              1       {txt}Sum of wgt. {res}         88
+
+{txt}50%    {res}        3                      {txt}Mean          {res} 3.590909
+                        {txt}Largest       Std. dev.     {res} 2.414689
+{txt}75%    {res}        7              7
+{txt}90%    {res}        7              7       {txt}Variance      {res} 5.830721
+{txt}95%    {res}        7              7       {txt}Skewness      {res} .4077315
+{txt}99%    {res}        7              7       {txt}Kurtosis      {res} 1.602775
+
+                           {txt}cons90
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}         88
+{txt}25%    {res}      1.5              1       {txt}Sum of wgt. {res}         88
+
+{txt}50%    {res}        3                      {txt}Mean          {res} 3.636364
+                        {txt}Largest       Std. dev.     {res} 2.339967
+{txt}75%    {res}        7              7
+{txt}90%    {res}        7              7       {txt}Variance      {res} 5.475444
+{txt}95%    {res}        7              7       {txt}Skewness      {res} .4221699
+{txt}99%    {res}        7              7       {txt}Kurtosis      {res} 1.627628
+
+                      {txt}democracy in 1900
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        0              0
+{txt} 5%    {res}        0              0
+{txt}10%    {res}        0              0       {txt}Obs         {res}         87
+{txt}25%    {res}        0              0       {txt}Sum of wgt. {res}         87
+
+{txt}50%    {res}        0                      {txt}Mean          {res} 1.149425
+                        {txt}Largest       Std. dev.     {res} 2.576859
+{txt}75%    {res}        1             10
+{txt}90%    {res}        5             10       {txt}Variance      {res} 6.640203
+{txt}95%    {res}        9             10       {txt}Skewness      {res} 2.499375
+{txt}99%    {res}       10             10       {txt}Kurtosis      {res} 8.212363
+
+               {txt}constraint on executive in 1900
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}         91
+{txt}25%    {res}        1              1       {txt}Sum of wgt. {res}         91
+
+{txt}50%    {res}        1                      {txt}Mean          {res} 1.857143
+                        {txt}Largest       Std. dev.     {res} 1.823132
+{txt}75%    {res}        1              7
+{txt}90%    {res}        5              7       {txt}Variance      {res}  3.32381
+{txt}95%    {res}        7              7       {txt}Skewness      {res} 2.082463
+{txt}99%    {res}        7              7       {txt}Kurtosis      {res} 5.964955
+
+                     {txt}corrected mortality
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}     2.55           2.55
+{txt} 5%    {res}     11.4           2.88
+{txt}10%    {res}     16.1           8.55       {txt}Obs         {res}         87
+{txt}25%    {res}     67.8           8.55       {txt}Sum of wgt. {res}         87
+
+{txt}50%    {res}       85                      {txt}Mean          {res} 220.9264
+                        {txt}Largest       Std. dev.     {res} 411.4982
+{txt}75%    {res}   266.52            668
+{txt}90%    {res}      483           1470       {txt}Variance      {res} 169330.8
+{txt}95%    {res}      668           2004       {txt}Skewness      {res} 4.671332
+{txt}99%    {res}     2940           2940       {txt}Kurtosis      {res} 27.64874
+
+                    {txt}log settler mortality
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} .9360933       .9360933
+{txt} 5%    {res} 2.433613        1.05779
+{txt}10%    {res} 2.778819       2.145931       {txt}Obs         {res}         87
+{txt}25%    {res} 4.216562       2.145931       {txt}Sum of wgt. {res}         87
+
+{txt}50%    {res} 4.442651                      {txt}Mean          {res} 4.595984
+                        {txt}Largest       Std. dev.     {res} 1.303333
+{txt}75%    {res} 5.634789       6.504288
+{txt}90%    {res} 6.180017       7.293018       {txt}Variance      {res} 1.698678
+{txt}95%    {res} 6.504288       7.602901       {txt}Skewness      {res} -.239708
+{txt}99%    {res} 7.986165       7.986165       {txt}Kurtosis      {res} 3.561895
+
+                 {txt}Matching result from merge
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        3              3
+{txt} 5%    {res}        3              3
+{txt}10%    {res}        3              3       {txt}Obs         {res}        163
+{txt}25%    {res}        3              3       {txt}Sum of wgt. {res}        163
+
+{txt}50%    {res}        3                      {txt}Mean          {res}        3
+                        {txt}Largest       Std. dev.     {res}        0
+{txt}75%    {res}        3              3
+{txt}90%    {res}        3              3       {txt}Variance      {res}        0
+{txt}95%    {res}        3              3       {txt}Skewness      {res}        .
+{txt}99%    {res}        3              3       {txt}Kurtosis      {res}        .
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "C:\Users\THOMAS~1\AppData\Local\Temp\STD69c4_000000.tmp"
+{txt}
+{com}. sum pgp95 logpgp95, detail
+
+                            {txt}pgp95
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 520.0001            450
+{txt} 5%    {res} 710.0001       520.0001
+{txt}10%    {res}      930       520.0001       {txt}Obs         {res}        148
+{txt}25%    {res}     1595            640       {txt}Sum of wgt. {res}        148
+
+{txt}50%    {res} 3889.999                      {txt}Mean          {res} 7064.866
+                        {txt}Largest       Std. dev.     {res} 7331.979
+{txt}75%    {res}    10140          24840
+{txt}90%    {res} 19889.99          25500       {txt}Variance      {res} 5.38e+07
+{txt}95%    {res} 22149.99          27330       {txt}Skewness      {res} 1.257881
+{txt}99%    {res}    27330       29399.99       {txt}Kurtosis      {res} 3.356508
+
+             {txt}log PPP GDP pc in 1995, World Bank
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res} 6.253829       6.109248
+{txt} 5%    {res} 6.565265       6.253829
+{txt}10%    {res} 6.835185       6.253829       {txt}Obs         {res}        148
+{txt}25%    {res} 7.374624       6.461468       {txt}Sum of wgt. {res}        148
+
+{txt}50%    {res} 8.265764                      {txt}Mean          {res} 8.302509
+                        {txt}Largest       Std. dev.     {res} 1.105342
+{txt}75%    {res} 9.224119       10.12021
+{txt}90%    {res} 9.897972       10.14643       {txt}Variance      {res} 1.221781
+{txt}95%    {res} 10.00559       10.21574       {txt}Skewness      {res} .0588847
+{txt}99%    {res} 10.21574       10.28875       {txt}Kurtosis      {res} 1.934531
+{txt}
+{com}. 
+{txt}end of do-file
+
 {com}. 

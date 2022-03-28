@@ -3,7 +3,7 @@
 ***********************************************************
 clear
 capture log close
-cd G:\daron\colonial_origins
+cd "C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj\source_data"
 log using maketable3, replace
 
 /*Data Files Used
