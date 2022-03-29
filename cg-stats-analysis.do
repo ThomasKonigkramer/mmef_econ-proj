@@ -13,6 +13,7 @@ Sections	1) use data for our replication of results
 			4) first estimation: reg, outliers, influencial points 
 			5) tests and corrections: heterosk., variable selection, endogeneity, instrumental variables
 			6) final model
+			7) import recent GDP figures
 			
 Suggestion: 1) regression, 2) hetero, 3) variable selection, 4) outliers and influential points, 5) endogeneity and IV
 			
@@ -31,8 +32,11 @@ merge 1:1 shortnam using data_files\maketable1
 
 * drop variables not necessary
 // drop euro1900 excolony cons1 cons90 democ00a cons00a
+drop _merge
 
 save data_files\cg-analysis, replace
+
+use data_files\cg-analysis
 
 * 2) theory (summary and dummies) *************************************************************************************
 * generate variables needed variables for investigation
@@ -57,6 +61,7 @@ order shortnam pgp95 logpgp95 loghjypl hjypl extmort4 logem4 lat_abst loglat_abs
 
 sum
 
+save data_files\cg-analysis, replace
 
 * 3) relevant plots ***************************************************************************************************
 
@@ -152,3 +157,20 @@ reg logpgp95 logem4 lat_abst avexpr
 * 6) final model ******************************************************************************************************
 
 * reg
+
+* 7) import recent GDP figures ****************************************************************************************
+
+
+clear
+	
+import excel "data_files\Data_Extract_From_World_Development_Indicators.xlsx", sheet("Data") firstrow clear
+	
+drop SeriesName SeriesCode CountryName
+drop if CountryCode == ""
+
+rename CountryCode shortnam
+// drop if shortnam == ""
+
+merge 1:1 shortnam using data_files\cg-analysis
+* many mismatches - read up on how to identify them here: https://www.princeton.edu/~otorres/Merge101.pdf
+* will need to look into this
