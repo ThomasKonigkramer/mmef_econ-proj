@@ -37,61 +37,91 @@ save data_files\cg-analysis, replace
 * 2) theory (summary and dummies) *************************************************************************************
 * generate variables needed variables for investigation
 
-sum
+// sum
 
-gen pgp95 = exp(logpgp95)
 * 15 missing values generated: no information in logpgp95 for those observations, so this is expected (163-148=15)
-gen hjypl = exp(loghjypl)
+gen pgp95 = exp(logpgp95)
 * 40 missing values generated: no information (163-123=40)
+gen hjypl = exp(loghjypl)
+gen loglat_abst = log(lat_abst)
+gen logavexpr = log(avexpr)
 
-* for readability of variables - y variables on top after shortnam
-order shortnam pgp95 logpgp95 loghjypl hjypl
+
+label variable pgp95 "PPP GDP pc in 1995, World Bank"
+label variable hjypl "GDP per work, Hall&Jones"
+label variable loglat_abst "log Abs(latitude of capital)/90"
+label variable logavexpr "log average protection against expropriation risk"
+
+* for readability of variables - y variables on top after shortnam, then doubles, then dummies
+order shortnam pgp95 logpgp95 loghjypl hjypl extmort4 logem4 lat_abst loglat_abst avexpr logavexpr africa asia other 
+
+sum
 
 
 * 3) relevant plots ***************************************************************************************************
 
-* histograms
+* histograms **********************************************************************************************************
+
 twoway histogram pgp95 || kdensity pgp95, title("`: var label pgp95'")
-// graph export graphs\graph-histogram-pgp95.png
+graph export graphs\graph-histogram-pgp95.png, replace
 twoway histogram logpgp95 || kdensity logpgp95, title("`: var label logpgp95'")
-// graph export graphs\graph-histogram-logpgp95.png
+graph export graphs\graph-histogram-logpgp95.png, replace
 * detailed summary of these two variables to look at their skewness - evident from histograms
 sum pgp95 logpgp95, detail
 
 twoway histogram hjypl || kdensity hjypl, title("`: var label hjypl'")
-// graph export graphs\graph-histogram-hjypl.png
+graph export graphs\graph-histogram-hjypl.png, replace
 twoway histogram loghjypl || kdensity loghjypl, title("`: var label loghjypl'")
-// graph export graphs\graph-histogram-loghjypl.png
+graph export graphs\graph-histogram-loghjypl.png, replace
 * detailed summary of these two variables to look at their skewness
 sum hjypl loghjypl, detail
 
+twoway histogram extmort4 || kdensity extmort4, title("`: var label extmort4'")
+graph export graphs\graph-histogram-extmort4.png, replace
+twoway histogram logem4 || kdensity logem4, title("`: var label logem4'")
+graph export graphs\graph-histogram-logem4.png, replace
+sum extmort4 logem4, detail
 
+* clearly log transformation does not improve this variable's distribution
+twoway histogram lat_abst || kdensity lat_abst, title("`: var label lat_abst'")
+graph export graphs\graph-histogram-lat_abst.png, replace
+twoway histogram loglat_abst || kdensity loglat_abst, title("`: var label loglat_abst'")
+graph export graphs\graph-histogram-loghjypl.png, replace
+sum lat_abst loglat_abst, detail
 
+* clearly log transformation does not improve this variable's distribution
+twoway histogram avexpr || kdensity avexpr, title("`: var label avexpr'")
+graph export graphs\graph-histogram-avexpr.png, replace
+twoway histogram logavexpr || kdensity logavexpr, title("`: var label logavexpr'")
+graph export graphs\graph-histogram-logavexpr.png, replace
+sum avexpr logavexpr, detail
 
+* scatterplots ********************************************************************************************************
 
+* set 1: with logpgp95 as indep/response variable
+* Question: do we look at the fits when not logged? I don't think it's necessary, because we transform based on histograms. Fits look better with transformed variables
+twoway scatter logpgp95 logem4 || lfit logpgp95 logem4
+graph export graphs\graph_logem4-vs-logpgp95.png, replace
 
+twoway scatter logpgp95 lat_abst || lfit logpgp95 lat_abst
+graph export graphs\graph_lat_abst-vs-logpgp95.png, replace
 
+twoway scatter logpgp95 avexpr || lfit logpgp95 avexpr
+graph export graphs\graph_avexpr-vs-logpgp95.png, replace
 
+* set 2: with loghjypl as indep/repsonse variable
+twoway scatter loghjypl logem4 || lfit loghjypl logem4
+graph export graphs\graph_logem4-vs-loghjypl.png, replace
 
+twoway scatter loghjypl lat_abst || lfit loghjypl lat_abst
+graph export graphs\graph_lat_abst-vs-loghjypl.png, replace
 
-
-
-* scatterplots of variables
-
-
-
-
-* scatterplots
-twoway scatter loggdp risk || lfit loggdp risk
-// graph export graphs\graph_risk-vs-loggdp.png, replace
-
-* histograms
-twoway histogram loggdp || kdensity loggdp, title("`: var label loggdp'")
-// graph export graphs\graph-histogram-y.png
+twoway scatter loghjypl avexpr || lfit loghjypl avexpr
+graph export graphs\graph_avexpr-vs-loghjypl.png, replace
 
 * 4) first estimation *************************************************************************************************
 
-* reg
+* our first regression
 
 * outliers
 
