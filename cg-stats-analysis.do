@@ -100,6 +100,7 @@ sum avexpr logavexpr, detail
 
 * set 1: with logpgp95 as indep/response variable
 * Question: do we look at the fits when not logged? I don't think it's necessary, because we transform based on histograms. Fits look better with transformed variables
+* Question: will we look at both indep variables going forward, or pick one? Perhaps logpgp95 since it has more observations
 twoway scatter logpgp95 logem4 || lfit logpgp95 logem4
 graph export graphs\graph_logem4-vs-logpgp95.png, replace
 
@@ -121,7 +122,8 @@ graph export graphs\graph_avexpr-vs-loghjypl.png, replace
 
 * 4) first estimation *************************************************************************************************
 
-* our first regression
+* regression-1 (coincides with name of png in figures)
+reg logpgp95 logem4 lat_abst avexpr
 
 * outliers
 
