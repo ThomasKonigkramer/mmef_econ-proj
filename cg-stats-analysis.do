@@ -21,7 +21,7 @@ Suggestion: 1) regression, 2) hetero, 3) variable selection, 4) outliers and inf
 
 * change working directory (pwd) as needed
 clear
-cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+cd C:\Users\Public\Documents\mmef_econ-proj
 
 * 1) use, save data ***************************************************************************************************
 
@@ -205,16 +205,16 @@ rvfplot, mlabel(shortnam)
 * 7) import recent GDP figures ****************************************************************************************
 
 
-clear
-	
-import excel "data_files\Data_Extract_From_World_Development_Indicators.xlsx", sheet("Data") firstrow clear
-	
-drop SeriesName SeriesCode CountryName
-drop if CountryCode == ""
-
-rename CountryCode shortnam
-// drop if shortnam == ""
-
-merge 1:1 shortnam using data_files\cg-analysis
-* many mismatches - read up on how to identify them here: https://www.princeton.edu/~otorres/Merge101.pdf
-* will need to look into this
+// clear
+//	
+// import excel "data_files\Data_Extract_From_World_Development_Indicators.xlsx", sheet("Data") firstrow clear
+//	
+// drop SeriesName SeriesCode CountryName
+// drop if CountryCode == ""
+//
+// rename CountryCode shortnam
+// // drop if shortnam == ""
+//
+// merge 1:1 shortnam using data_files\cg-analysis
+// * many mismatches - read up on how to identify them here: https://www.princeton.edu/~otorres/Merge101.pdf
+// * will need to look into this
