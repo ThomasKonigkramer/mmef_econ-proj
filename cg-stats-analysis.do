@@ -1,5 +1,5 @@
 /* 
-Title: 		econometrics midterm/project - 
+Title: 		econometrics midterm/project - cg-analysis
 
 Authors		Xiao Jiang
 			Sukanya Mukherjee
@@ -21,7 +21,7 @@ Suggestion: 1) regression, 2) hetero, 3) variable selection, 4) outliers and inf
 
 * change working directory (pwd) as needed
 clear
-cd C:\Users\Public\Documents\mmef_econ-proj
+cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
 
 * 1) use, save data ***************************************************************************************************
 
@@ -124,6 +124,9 @@ graph export graphs\graph_lat_abst-vs-logpgp95.png, replace
 
 twoway scatter logpgp95 avexpr || lfit logpgp95 avexpr
 graph export graphs\graph_avexpr-vs-logpgp95.png, replace
+
+twoway scatter logpgp95 extmort4 || lfit logpgp95 extmort4
+graph export graphs\graph_extmort4-vs-logpgp95.png, replace
 
 
 * set 2: with loghjypl as indep/repsonse variable
