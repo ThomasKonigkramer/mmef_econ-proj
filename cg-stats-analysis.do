@@ -13,10 +13,7 @@ Sections	1) use data for our replication of results
 			4) first estimation: reg, variable selection 
 			5) tests and corrections: heterosk., outliers, influencial points, endogeneity, instrumental variables
 			6) final model
-			7) import recent GDP figures
-			
-Suggestion: 1) regression, 2) hetero, 3) variable selection, 4) outliers and influential points, 5) endogeneity and IV
-			
+			7) import recent GDP figures			
 */
 
 * change working directory (pwd) as needed
@@ -31,8 +28,7 @@ merge 1:1 shortnam using data_files\maketable1
 * all _merge variables have a value of 3, which means there was a successful merge across the row
 
 * drop variables not necessary (_merge interferes with future merges)
-// drop euro1900 excolony cons1 cons90 democ00a cons00a
-// drop _merge
+drop euro1900 excolony cons1 cons90 democ00a cons00a loghjypl _merge
 
 save data_files\cg-analysis, replace
 
@@ -44,16 +40,16 @@ use data_files\cg-analysis
 // sum
 
 * 15 missing values generated: no information in logpgp95 for those observations, so this is expected (163-148=15)
-gen pgp95 = exp(logpgp95)
+gen gdp = exp(logpgp95)
 * 40 missing values generated: no information (163-123=40)
 // gen hjypl = exp(loghjypl)
-gen loglat_abst = log(lat_abst)
+gen logalat = log(lat_abst)
 gen logavexpr = log(avexpr)
 
 
-label variable pgp95 "PPP GDP pc in 1995, World Bank"
+label variable gdp "PPP GDP pc in 1995, World Bank"
 // label variable hjypl "GDP per work, Hall&Jones"
-label variable loglat_abst "log Abs(latitude of capital)/90"
+label variable logalat "log Abs(latitude of capital)/90"
 label variable logavexpr "log average protection against expropriation risk"
 
 gen neoeuro = 0
@@ -62,10 +58,14 @@ replace neoeuro = 1 if shortnam == "CAN"
 replace neoeuro = 1 if shortnam == "NZL"
 replace neoeuro = 1 if shortnam == "USA"
 
-* other country dummy already exists - 1 for AUS, FJI, MLT, NZL. I think we should remove this unless we have justification to cluster these countries
+* readability - rename variables, new labels, order
+rename logpgp95 loggdp
+rename lat_abst alat
+rename extmort4 mort
+rename logem4 logmort
 
-* for readability of variables - y variables on top after shortnam, then doubles, then dummies
-order shortnam pgp95 logpgp95 loghjypl extmort4 logem4 lat_abst loglat_abst avexpr logavexpr africa asia neoeuro other 
+
+order shortnam gdp loggdp mort logmort alat logalat avexpr logavexpr africa asia neoeuro 
 
 sum
 
@@ -75,97 +75,75 @@ save data_files\cg-analysis, replace
 
 * histograms **********************************************************************************************************
 
-twoway histogram pgp95 || kdensity pgp95, title("`: var label pgp95'")
-graph export graphs\graph-histogram-pgp95.png, replace
-twoway histogram logpgp95 || kdensity logpgp95, title("`: var label logpgp95'")
-graph export graphs\graph-histogram-logpgp95.png, replace
+twoway histogram gdp, lcolor(black) fcolor(pink%5) graphregion(fcolor(white)) || kdensity gdp, title("PPP GDP (1995)") lcolor (red) lpattern(dash)
+graph export graphs\graph-histogram-gdp.png, replace
+twoway histogram loggdp, lcolor(black) fcolor(pink%5) graphregion(fcolor(white)) || kdensity loggdp, title("Log of PPP GDP (1995)") lcolor (red) lpattern(dash)
+graph export graphs\graph-histogram-loggdp.png, replace
 * detailed summary of these two variables to look at their skewness - evident from histograms
-sum pgp95 logpgp95, detail
+sum gdp loggdp, detail
 
-// twoway histogram hjypl || kdensity hjypl, title("`: var label hjypl'")
-// graph export graphs\graph-histogram-hjypl.png, replace
-// twoway histogram loghjypl || kdensity loghjypl, title("`: var label loghjypl'")
-// graph export graphs\graph-histogram-loghjypl.png, replace
-// * detailed summary of these two variables to look at their skewness
-// sum hjypl loghjypl, detail
-
-twoway histogram extmort4 || kdensity extmort4, title("`: var label extmort4'")
-graph export graphs\graph-histogram-extmort4.png, replace
-twoway histogram logem4 || kdensity logem4, title("`: var label logem4'")
-graph export graphs\graph-histogram-logem4.png, replace
-sum extmort4 logem4, detail
+twoway histogram mort, lcolor(black) fcolor(pink%5) graphregion(fcolor(white)) || kdensity mort, title("Mortality") lcolor (red) lpattern(dash) 
+graph export graphs\graph-histogram-mort.png, replace
+twoway histogram logmort, lcolor(black) fcolor(pink%5) graphregion(fcolor(white)) || kdensity logmort, title("Log of Mortality") lcolor (red) lpattern(dash) 
+graph export graphs\graph-histogram-logmort.png, replace
+sum mort logmort, detail
 
 * clearly log transformation does not improve this variable's distribution
-twoway histogram lat_abst || kdensity lat_abst, title("`: var label lat_abst'")
-graph export graphs\graph-histogram-lat_abst.png, replace
-twoway histogram loglat_abst || kdensity loglat_abst, title("`: var label loglat_abst'")
+twoway histogram alat, lcolor(black) fcolor(pink%5) graphregion(fcolor(white)) || kdensity alat, title("Absolute Latitute") lcolor (red) lpattern(dash)
+graph export graphs\graph-histogram-alat.png, replace
+twoway histogram logalat, lcolor(black) fcolor(pink%5) graphregion(fcolor(white)) || kdensity logalat, title("Log of Absolute Latitude") lcolor (red) lpattern(dash) 
 graph export graphs\graph-histogram-loghjypl.png, replace
-sum lat_abst loglat_abst, detail
+sum alat logalat, detail
 
 * clearly log transformation does not improve this variable's distribution
-twoway histogram avexpr || kdensity avexpr, title("`: var label avexpr'")
+twoway histogram avexpr, lcolor(black) fcolor(pink%5) graphregion(fcolor(white)) || kdensity avexpr, title("Average Protection Against Expropriation Risk") lcolor (red) lpattern(dash) 
 graph export graphs\graph-histogram-avexpr.png, replace
-twoway histogram logavexpr || kdensity logavexpr, title("`: var label logavexpr'")
+twoway histogram logavexpr, lcolor(black) fcolor(pink%5) graphregion(fcolor(white)) || kdensity logavexpr, title("Log of Protection Against Average Expropriation Risk") lcolor (red) lpattern(dash) 
 graph export graphs\graph-histogram-logavexpr.png, replace
 sum avexpr logavexpr, detail
 
 * scatterplots ********************************************************************************************************
 
-* set 1: with logpgp95 as indep/response variable
-* justification for picking logpgp95: no. of observations available.
-// twoway scatter logpgp95 logem4 || lfit logpgp95 logem4, saving(graph_logem4-vs-logpgp95)
-twoway scatter logpgp95 logem4 || lfit logpgp95 logem4
-graph export graphs\graph_logem4-vs-logpgp95.png, replace
+twoway scatter loggdp logmort, mcolor(pink%25)  || lfit loggdp logmort , lcolor (red) title("Effect of log settler mortality on log of PPP GDP") ytitle(Log of PPP GDP 1995) xtitle(Log of Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+graph export graphs\graph_logmort-vs-loggdp.png, replace
 
-twoway scatter logpgp95 lat_abst || lfit logpgp95 lat_abst
-graph export graphs\graph_lat_abst-vs-logpgp95.png, replace
-
-// graph combine graph_logem4-vs-logpgp95.gph graph_lat_abst-vs-logpgp95.gph
-
-twoway scatter logpgp95 avexpr || lfit logpgp95 avexpr
-graph export graphs\graph_avexpr-vs-logpgp95.png, replace
-
-twoway scatter logpgp95 extmort4 || lfit logpgp95 extmort4
-graph export graphs\graph_extmort4-vs-logpgp95.png, replace
+twoway scatter loggdp alat, mcolor(pink%25)  || lfit loggdp alat, lcolor (red%60) title("Effect of latitude of capital on log of PPP GDP") ytitle(Log of PPP GDP 1995) xtitle(Latitude of Capital) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+graph export graphs\graph_alat-vs-loggdp.png, replace
 
 
-* set 2: with loghjypl as indep/repsonse variable
-// twoway scatter loghjypl logem4 || lfit loghjypl logem4
-// graph export graphs\graph_logem4-vs-loghjypl.png, replace
+twoway scatter loggdp avexpr, mcolor(pink%25)  || lfit loggdp avexpr, lcolor (red) title("Effect of average expropriation risk on log of PPP GDP")  ytitle(Log of PPP GDP 1995) xtitle(Average protection against expropriation risk) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+graph export graphs\graph_avexpr-vs-loggdp.png, replace
 
-// twoway scatter loghjypl lat_abst || lfit loghjypl lat_abst
-// graph export graphs\graph_lat_abst-vs-loghjypl.png, replace
+twoway scatter gdp mort, mcolor(pink%25)  || lfit gdp mort, lcolor (red) title("Effect of settler mortality on PPP GDP")  ytitle(PPP GDP 1995) xtitle(Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+graph export graphs\graph_mort-vs-loggdp.png, replace
 
-// twoway scatter loghjypl avexpr || lfit loghjypl avexpr
-// graph export graphs\graph_avexpr-vs-loghjypl.png, replace
+twoway scatter loggdp mort, mcolor(pink%25)  || lfit loggdp mort, lcolor (red) title("Effect of log of settler mortality on PPP GDP")  ytitle(PPP GDP 1995) xtitle(Log of Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+graph export graphs\graph_mort-vs-loggdp.png, replace
 
 * 4) first estimation *************************************************************************************************
 
 * variable selection, i.e. obtaining the regression we want ***********************************************************
 * regression-1.png (coincides with name of png in figures)
-reg logpgp95 logem4 lat_abst avexpr
-
-* we see that lat_abst is not significant, but there is some theory that says it would be. Perhaps clustering various similar countries will improve the significants.
-* add motivation for our clusters
+reg loggdp alat avexpr
 
 * regression-2.png
-reg logpgp95 logem4 lat_abst avexpr africa asia neoeuro
+reg loggdp alat avexpr africa asia neoeuro
 * lat_abs even less significant and neoeuro also insignficant
 
 * regression-3.png: dropped neoeuro since insign
-reg logpgp95 logem4 lat_abst avexpr africa asia
+reg loggdp alat avexpr africa asia
 
-* regression-4.png: dropped lat_abst since was still insign. Including neoeuro because interesting. Neoeuro proves to be insign.
-reg logpgp95 logem4 avexpr africa asia neoeuro
+* regression-4.png: dropped alat since was still insign. Including neoeuro because interesting. Neoeuro proves to be insign.
+reg loggdp avexpr africa asia neoeuro
 
 * regression-5.png: only sign. variables - this is the one we want
-reg logpgp95 logem4 avexpr africa asia
+reg loggdp avexpr africa asia
 
 * regression-6.png: sign. with no dummies - just for interest
-reg logpgp95 logem4 avexpr
+reg loggdp avexpr
 
 * final regression:
-reg logpgp95 logem4 avexpr africa asia
+reg loggdp avexpr africa asia
 
 * 5) tests and corrections ********************************************************************************************
 
@@ -175,20 +153,23 @@ reg logpgp95 logem4 avexpr africa asia
 estat hettest, rhs
 
 * needs to be run somewhere else - not working on Tom's computer - have no screenshots post this
-ssc install whitetst
-whitetst
+// ssc install whitetst
+// whitetst
 
 * all the same as before, but no adjusted R^2
-reg logpgp95 logem4 avexpr africa asia, robust
+reg loggdp avexpr africa asia, robust
 
 * outliers
 rvfplot, mlabel(shortnam)
+graph export graphs\graph_outliers.png, replace
 
 //
 // predict diag_leverage, leverage
 // list diag_leverage
 
 * outliers
+
+
 
 * influencial points
 
@@ -202,6 +183,10 @@ rvfplot, mlabel(shortnam)
 * instrumental variables
 
 * 6) final model ******************************************************************************************************
+
+*IV - add logmort
+
+ivregress 2sls loggdp avexpr(logmort) africa asia
 
 * reg
 
