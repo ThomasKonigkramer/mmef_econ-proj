@@ -1,30 +1,12 @@
-/* 
-Title: 		econometrics midterm/project - cg-analysis
-
-Authors		Xiao Jiang
-			Sukanya Mukherjee
-			Thomas Konigkramer			
-			
-Date		23 March 2022
-
-Sections	1) use data for our replication of results
-			2) theory: summary and dummy creation
-			3) relevant plots: scatterplots and histograms
-			4) first estimation: reg, variable selection 
-			5) tests and corrections: heterosk., outliers, influencial points, endogeneity, instrumental variables
-			6) final model
-			7) import recent GDP figures			
-*/
-
-* change working directory (pwd) as needed
 clear
-cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
+use "/Users/jiangxiao/Downloads/maketable2.dta"
+
 
 * 1) use, save data ***************************************************************************************************
 
-use data_files\maketable2
+use "/Users/jiangxiao/Downloads/maketable2.dta"
 
-merge 1:1 shortnam using data_files\maketable1
+merge 1:1 shortnam using  "/Users/jiangxiao/Downloads/maketable1/maketable1.dta"
 * all _merge variables have a value of 3, which means there was a successful merge across the row
 
 * drop variables not necessary (_merge interferes with future merges)
@@ -46,8 +28,7 @@ gen gdp = exp(logpgp95)
 gen logalat = log(lat_abst)
 gen logavexpr = log(avexpr)
 
-
-label variable gdp "PPP GDP pc in 1995, World Bank"
+label variable gdp "PPP GDP pc in 1995"
 // label variable hjypl "GDP per work, Hall&Jones"
 label variable logalat "log Abs(latitude of capital)/90"
 label variable logavexpr "log average protection against expropriation risk"
@@ -104,21 +85,23 @@ sum avexpr logavexpr, detail
 
 * scatterplots ********************************************************************************************************
 
-twoway scatter loggdp logmort, mcolor(pink%25)  || lfit loggdp logmort , lcolor (red) title("Effect of log settler mortality on log of PPP GDP") ytitle(Log of PPP GDP 1995) xtitle(Log of Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
-graph export graphs\graph_logmort-vs-loggdp.png, replace
 
-twoway scatter loggdp alat, mcolor(pink%25)  || lfit loggdp alat, lcolor (red%60) title("Effect of latitude of capital on log of PPP GDP") ytitle(Log of PPP GDP 1995) xtitle(Latitude of Capital) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+
+twoway scatter loggdp alat, mcolor(pink%25)  || lfit loggdp alat, lcolor (red%60) title("Latitude of capital VS Log of PPP GDP 1995") ytitle(Log of PPP GDP 1995) xtitle(Latitude of Capital) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
 graph export graphs\graph_alat-vs-loggdp.png, replace
 
 
-twoway scatter loggdp avexpr, mcolor(pink%25)  || lfit loggdp avexpr, lcolor (red) title("Effect of average expropriation risk on log of PPP GDP")  ytitle(Log of PPP GDP 1995) xtitle(Average protection against expropriation risk) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+twoway scatter loggdp avexpr, mcolor(pink%25)  || lfit loggdp avexpr, lcolor (red) title("Average expropriation risk VS Log of PPP GDP 1995")  ytitle(Log of PPP GDP 1995) xtitle(Average protection against expropriation risk) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
 graph export graphs\graph_avexpr-vs-loggdp.png, replace
 
-twoway scatter gdp mort, mcolor(pink%25)  || lfit gdp mort, lcolor (red) title("Effect of settler mortality on PPP GDP")  ytitle(PPP GDP 1995) xtitle(Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+twoway scatter gdp mort, mcolor(pink%25)  || lfit gdp mort, lcolor (red) title("Settler mortality VS PPP GDP 1995")  ytitle(PPP GDP 1995) xtitle(Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+graph export graphs\graph_mort-vs-gdp.png, replace
+
+twoway scatter loggdp mort, mcolor(pink%25)  || lfit loggdp mort, lcolor (red) title("Settler mortality VS Log PPP GDP 1995")  ytitle(PPP GDP 1995) xtitle(Log of Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
 graph export graphs\graph_mort-vs-loggdp.png, replace
 
-twoway scatter loggdp mort, mcolor(pink%25)  || lfit loggdp mort, lcolor (red) title("Effect of log of settler mortality on PPP GDP")  ytitle(PPP GDP 1995) xtitle(Log of Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
-graph export graphs\graph_mort-vs-loggdp.png, replace
+twoway scatter loggdp logmort, mcolor(pink%25)  || lfit loggdp logmort , lcolor (red) title(" Log of Settler mortality VS Log of PPP GDP 1995") ytitle(Log of PPP GDP 1995) xtitle(Log of Settler mortality) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
+graph export graphs\graph_logmort-vs-loggdp.png, replace
 
 * 4) first estimation *************************************************************************************************
 
@@ -151,16 +134,12 @@ reg loggdp avexpr africa asia
 
 *estat-hettest.png
 estat hettest, rhs
-
-* needs to be run somewhere else - not working on Tom's computer - have no screenshots post this
-// ssc install whitetst
-// whitetst
-
-* all the same as before, but no adjusted R^2
+ssc install whitetst
+whitetst
 reg loggdp avexpr africa asia, robust
 
 * outliers
-rvfplot, mlabel(shortnam)
+rvfplot, mlabel(shortnam) mcolor(pink%25) graphregion(fcolor(white))
 graph export graphs\graph_outliers.png, replace
 
 //
@@ -168,8 +147,34 @@ graph export graphs\graph_outliers.png, replace
 // list diag_leverage
 
 * outliers
+* influencial points
+
+* leverage vs residuals
+// lvr2plot, mlabel(shortnam)
+
+// reg with robust
+
+* endogeneity
+
+* instrumental variables
+
+* 6) final model ******************************************************************************************************
+
+*IV - add logmort
+
+ivregress 2sls loggdp avexpr(logmort) africa asia
+
+* reg
+
+* 7) import recent GDP figures ****************************************************************************************
 
 
+// clear
+//	
+// import excel "data_files\Data_Extract_From_World_Development_Indicators.xlsx", sheet("Data") firstrow clear
+//	
+// drop SeriesName SeriesCode CountryName
+// drop if CountryCode == ""
 
 * influencial points
 
