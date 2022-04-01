@@ -154,21 +154,35 @@ estat hettest, rhs
 ssc install whitetst
 whitetst
 
-* outliers and influencial points ************************************************************************************* 
+* outliers and influencial points *************************************************************************************
+rvfplot, mlabel(shortnam) mcolor(pink%25) graphregion(fcolor(white))
+graph export graphs\graph_outliers.png, replace
+ 
 lvr2plot, mlabel(shortnam) mcolor(pink%25) graphregion(fcolor(white))
 graph export graphs\graph_lvr2plot.png, replace
 
-* endogeneity
+* endogeneity and instrumental variables *****************************************************************************
 
-* instrumental variables
+reg loggdp avexpr africa
+
+* ivregress-1.png
+ivregress 2sls loggdp (avexpr = logmort) africa
+
+* ivregress-2.png
+ivregress 2sls loggdp (avexpr = logmort) africa asia neoeuro
+
+* ivregress-3.png
+ivregress 2sls loggdp (avexpr = logmort) africa asia
+
+* hausmann test
+* endog.png - screenshot
+estat endogenous 
+* over identification: check whether E(zu) = 0 - no overidenitying restrictions
+estat overid 
+
 
 * 6) final model ******************************************************************************************************
 
-*IV - add logmort
-
-ivregress 2sls loggdp avexpr(logmort) africa asia
-
-* reg
 
 * 7) import recent GDP figures ****************************************************************************************
 
