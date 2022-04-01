@@ -1,16 +1,35 @@
+/* 
+Title: 		econometrics midterm/project - cg-analysis
+
+Authors		Xiao Jiang
+			Sukanya Mukherjee
+			Thomas Konigkramer			
+			
+Date		23 March 2022
+
+Sections	1) use data for our replication of results
+			2) theory: summary and dummy creation
+			3) relevant plots: scatterplots and histograms
+			4) first estimation: reg, variable selection 
+			5) tests and corrections: heterosk., outliers, influencial points, endogeneity, instrumental variables
+			6) final model
+			7) import recent GDP figures			
+*/
+
+* change working directory (pwd) as neededclear
 clear
-use "/Users/jiangxiao/Downloads/maketable2.dta"
+cd C:\Users\ThomasKönigkrämer\Desktop\MMEF_2021\Econometrics\mmef_econ-proj
 
 
 * 1) use, save data ***************************************************************************************************
 
-use "/Users/jiangxiao/Downloads/maketable2.dta"
+use data_files\maketable2
 
-merge 1:1 shortnam using  "/Users/jiangxiao/Downloads/maketable1/maketable1.dta"
+merge 1:1 shortnam using data_files\maketable1
 * all _merge variables have a value of 3, which means there was a successful merge across the row
 
 * drop variables not necessary (_merge interferes with future merges)
-drop euro1900 excolony cons1 cons90 democ00a cons00a loghjypl _merge
+drop euro1900 excolony cons1 cons90 democ00a cons00a loghjypl _merge other baseco
 
 save data_files\cg-analysis, replace
 
@@ -23,13 +42,10 @@ use data_files\cg-analysis
 
 * 15 missing values generated: no information in logpgp95 for those observations, so this is expected (163-148=15)
 gen gdp = exp(logpgp95)
-* 40 missing values generated: no information (163-123=40)
-// gen hjypl = exp(loghjypl)
 gen logalat = log(lat_abst)
 gen logavexpr = log(avexpr)
 
 label variable gdp "PPP GDP pc in 1995"
-// label variable hjypl "GDP per work, Hall&Jones"
 label variable logalat "log Abs(latitude of capital)/90"
 label variable logavexpr "log average protection against expropriation risk"
 
@@ -38,6 +54,8 @@ replace neoeuro = 1 if shortnam == "AUS"
 replace neoeuro = 1 if shortnam == "CAN"
 replace neoeuro = 1 if shortnam == "NZL"
 replace neoeuro = 1 if shortnam == "USA"
+
+label variable neoeuro "dummy=1 for AUS, CAN, NZL, USA"
 
 * readability - rename variables, new labels, order
 rename logpgp95 loggdp
