@@ -2,8 +2,8 @@
 Title: 		econometrics midterm/project - cg-analysis
 
 Authors		Xiao Jiang
-			Sukanya Mukherjee
 			Thomas Konigkramer			
+			Sukanya Mukherjee
 			
 Date		23 March 2022
 
@@ -108,8 +108,6 @@ sum avexpr logavexpr, detail
 
 * scatterplots ********************************************************************************************************
 
-
-
 twoway scatter loggdp alat, mcolor(pink%25)  || lfit loggdp alat, lcolor (red%60) title("Latitude of capital vs Log GDP 1995") ytitle(Log GDP 1995) xtitle(Latitude of Capital) lcolor(red%60) graphregion(fcolor(white)) legend(off) lwidth(big)
 graph export graphs\graph_alat-vs-loggdp.png, replace
 
@@ -150,10 +148,6 @@ reg loggdp avexpr africa
 estat hettest, rhs
 * no heteroskedasticity
 
-* whitetst.png - screenshot
-ssc install whitetst
-whitetst
-
 * outliers and influencial points *************************************************************************************
 rvfplot, mlabel(shortnam) mcolor(pink%25) graphregion(fcolor(white))
 graph export graphs\graph_outliers.png, replace
@@ -178,29 +172,8 @@ ivregress 2sls loggdp (avexpr = logmort) africa asia
 * endog.png - screenshot
 estat endogenous 
 * over identification: check whether E(zu) = 0 - no overidenitying restrictions
-estat overid 
-
+// estat overid 
 
 * 6) final model ******************************************************************************************************
 
-
-* 7) import recent GDP figures ****************************************************************************************
-
-
-// clear
-//	
-// import excel "data_files\Data_Extract_From_World_Development_Indicators.xlsx", sheet("Data") firstrow clear
-//	
-// drop SeriesName SeriesCode CountryName
-// drop if CountryCode == ""
-
-* influencial points
-
-* leverage vs residuals
-// lvr2plot, mlabel(shortnam)
-
-// reg with robust
-
-* endogeneity
-
-* instrumental variables
+ivregress 2sls loggdp (avexpr = logmort) africa asia
