@@ -1,4 +1,9 @@
-# mmef_econ-proj
+# mmef_econ-proj - du mmef students
+
+# group members - jkm:
+# xiao jiang
+# thomas konigkramer
+# sukanay mukherjee
 
 # data_files
 # contains all the source data files (maketables), and the combined data table used in the investigation
